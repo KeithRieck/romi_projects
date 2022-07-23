@@ -6,7 +6,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
-import frc.robot.OnBoardIO.ChannelMode;
+import edu.wpi.first.wpilibj.romi.OnBoardIO.ChannelMode;
+import edu.wpi.first.wpilibj.romi.OnBoardIO;
+import edu.wpi.first.wpilibj.romi.RomiGyro;
+import edu.wpi.first.wpilibj.romi.RomiMotor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -47,6 +50,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     onboardIO.setGreenLed(false);
     onboardIO.setRedLed(false);
+    onboardIO.setYellowLed(false);
     lightsOn = false;
     timer.reset();
     timer.start();
@@ -68,6 +72,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     onboardIO.setGreenLed(false);
     onboardIO.setRedLed(false);
+    onboardIO.setYellowLed(false);
     lightsOn = false;
     timer.reset();
     timer.start();
@@ -100,11 +105,22 @@ public class Robot extends TimedRobot {
   /** This function is called once when test mode is enabled. */
   @Override
   public void testInit() {
+    onboardIO.setGreenLed(false);
+    onboardIO.setRedLed(false);
     onboardIO.setYellowLed(true);
+    lightsOn = true;
+    timer.reset();
+    timer.start();
   }
 
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
+    if (timer.hasElapsed(0.5)) {
+      lightsOn = !lightsOn;
+      onboardIO.setYellowLed(lightsOn);
+      timer.reset();
+      timer.start();
+    }
   }
 }
