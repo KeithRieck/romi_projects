@@ -151,6 +151,9 @@ gradle-app.setting
 .settings/
 bin/
 
+# WPILib simulator files
+networktables.ini*
+simgui*
 
 # IntelliJ
 .idea/

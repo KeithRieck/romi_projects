@@ -10,30 +10,35 @@ import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and button mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls). Instead, the structure ofthe robot (including subsystems,
+ * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final RomiDrivetrain m_romiDrivetrain = new RomiDrivetrain();
 
-  private final ExampleCommand m_autoCommand = null;
+  private final Chassis m_chassis = new Chassis();
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  private final XboxController m_xbox = new XboxController(0);
+
+  private final ChassisDriveCommand m_autoCommand = null;
+
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
-    // Configure the button bindings
     configureButtonBindings();
   }
 
   /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link edu.wpi.first.wpilibj.GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * Use this method to define your button->command mappings. 
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    m_chassis.setDefaultCommand(new ChassisDriveCommand(m_chassis,
+        () -> m_xbox.getRawAxis(1),
+        () -> m_xbox.getRawAxis(0)));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -41,7 +46,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
     return m_autoCommand;
   }
 }

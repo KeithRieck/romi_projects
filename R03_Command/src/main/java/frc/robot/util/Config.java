@@ -110,7 +110,7 @@ public final class Config {
     }
 
     protected static InputStream openStream(String fileName) throws IOException {
-        if (fileName.startsWith("/")) {
+        if (fileName.startsWith("/") || fileName.startsWith("./")) {
             File file = new File(fileName);
             if (file.exists() && file.canRead()) {
                 return new FileInputStream(file);
