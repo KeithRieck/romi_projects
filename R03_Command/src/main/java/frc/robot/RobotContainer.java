@@ -22,7 +22,7 @@ public class RobotContainer {
 
   private final XboxController m_xbox = new XboxController(0);
 
-  private final ChassisDriveCommand m_autoCommand = null;
+  private Command m_autoCommand = null;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -32,7 +32,7 @@ public class RobotContainer {
   }
 
   /**
-   * Use this method to define your button->command mappings. 
+   * Use this method to define your button->command mappings.
    */
   private void configureButtonBindings() {
     m_chassis.setDefaultCommand(new ChassisDriveCommand(m_chassis,
