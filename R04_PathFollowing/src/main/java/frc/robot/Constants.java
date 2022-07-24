@@ -9,7 +9,15 @@ import static frc.robot.util.Config.loadConfiguration;
 import static frc.robot.util.Config.printPreferences;
 
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -23,6 +31,8 @@ import edu.wpi.first.wpilibj.Preferences;
  */
 public final class Constants {
 
+    public static Map<String, Trajectory> TRAJECTORY = new HashMap<>();
+
     /** DEBUG enables extra logging and Shuffleboard widgets. */
     public static boolean DEBUG = false;
 
@@ -32,6 +42,15 @@ public final class Constants {
         printPreferences(System.out);
 
         DEBUG = Preferences.getBoolean("DEBUG", false);
+    }
+
+    public static void loadTrajectory(String trajectoryName, Path trajectoryPath) {
+        try {
+            Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+            TRAJECTORY.put(trajectoryName, trajectory);
+        } catch (IOException ex) {
+            DriverStation.reportError("Unable to open trajectory: " + trajectoryPath, ex.getStackTrace());
+        }
     }
 
     public static final class DriveConstants {

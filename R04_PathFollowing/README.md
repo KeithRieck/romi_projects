@@ -6,8 +6,7 @@ This project borrows from:
 
 TODO:
 * Consider redoing everything in inches instead of in meters.  Is this worth it?
-* Rework path following Constants so we read values from property files
-* Use PathWeaver to generate Trajectory.  Output to some kind of text file.
-* Create a new Command class that loads trajectories and constants from text files.
+* Rework path following Constants so we read values from property files or using our `Config` mechanism.
+* Create a new Command class that [loads trajectories from JSON files](https://docs.wpilib.org/en/stable/docs/software/pathplanning/pathweaver/integrating-robot-program.html).
 * Set up choosable widget to choose different trajectory commands or other commands for Autonomous.
 

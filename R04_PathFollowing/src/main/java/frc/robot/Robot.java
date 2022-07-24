@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import java.nio.file.Path;
+
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,12 +33,13 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our autonomous chooser on the dashboard.
 
+    final Path configFile = Filesystem.getDeployDirectory().toPath().resolve("config.properties");
     if (RobotBase.isReal()) {
-      Constants.init("/home/lvuser/deploy/config.properties",
+      Constants.init(configFile.toString(),
           "/home/lvuser/config.properties",
           "/u/config.properties");
     } else {
-      Constants.init("./src/main/deploy/config.properties");
+      Constants.init(configFile.toString());
     }
 
     m_robotContainer = new RobotContainer();
