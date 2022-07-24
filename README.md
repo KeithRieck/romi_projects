@@ -12,6 +12,10 @@ This repository contains some experiments for the [Romi Robot](https://docs.wpil
   * [Romi software walkthrough](https://www.youtube.com/watch?v=j5g4nHV3FaY) - 43 minutes
   * [Another walkthrough of setup, programming, and driving](https://www.youtube.com/watch?v=mop51tpWWcA) - 29 minutes
   * [Trajectory Following](https://www.youtube.com/watch?v=_SBpyfUYF_k) - 16 seconds
+* Chief Delphi Threads
+  * [Praise for the Romi](https://www.chiefdelphi.com/t/praise-for-the-romi-why-it-is-a-better-fit-for-our-team-than-many-that-have-come-before/390388)
+  * [From Romi Path Following to FRC Robot](https://www.chiefdelphi.com/t/from-romi-path-following-to-frc-robot/393857)
+  * [Trajectory following with the Romi](https://www.chiefdelphi.com/t/trajectory-following-with-the-romi/390505)
 
 
 
